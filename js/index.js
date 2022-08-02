@@ -15,7 +15,6 @@ window.addEventListener("DOMContentLoaded", () => {
         console.log(window.innerHeight);
         filterItem.forEach((items) => {
             let filterOffset = items.offsetTop;
-            console.log(filterOffset);
             if (window.innerHeight < filterOffset) {
                 items.classList.add("hidden");
             } else {
@@ -25,7 +24,6 @@ window.addEventListener("DOMContentLoaded", () => {
         window.addEventListener("scroll", () => {
             filterItem.forEach((items) => {
                 let filterOffset = items.offsetTop;
-                console.log(filterOffset);
                 if (window.innerHeight + scrollY - 30 < filterOffset) {
                     items.classList.add("hidden");
                 } else {
