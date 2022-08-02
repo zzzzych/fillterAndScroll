@@ -32,6 +32,9 @@ body .open {
   left: 0;
   border-bottom-color: transparent;
 }
+.wrap .header .logo {
+  cursor: pointer;
+}
 .wrap .header nav {
   display: flex;
   align-items: center;
@@ -77,7 +80,7 @@ body .open {
   justify-content: center;
   align-items: center;
   opacity: 1;
-  transition: all ease 0.5s;
+  transition: all ease 0.4s;
   transform: translateY(0);
 }
 .wrap .container .content .filter-item.hidden {
@@ -88,7 +91,7 @@ body .open {
   min-height: 100%;
   min-width: 100%;
   object-fit: cover;
-  transition: all ease 0.4s;
+  transition: all ease 0.3s;
   transform-origin: center center;
 }
 .wrap .container .content .filter-item img:hover {
