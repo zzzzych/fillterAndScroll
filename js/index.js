@@ -10,9 +10,26 @@ window.addEventListener("DOMContentLoaded", () => {
     let filter = document.querySelector(".wrap > .header .filter");
     let filterLi = filter.children;
 
+    //이미지 로딩 시 완료 되기 전 로딩 스피너
+    filterImg.forEach((images) => {
+        if (images.complete == false && images.naturalHeight == 0) {
+            //이미지가 로딩 중일 때
+            images.style.opacity = 0;
+            images.parentElement.classList.add("loading-spinner");
+            window.addEventListener("load", () => {
+                // 이미지가 로딩이 완료 되었을 때
+                images.parentElement.classList.remove("loading-spinner");
+                images.style.opacity = 1;
+            });
+        } else if (images.complete == true && images.naturalHeight !== 0) {
+            return;
+        } else {
+            return;
+        }
+    });
+
     setLayout();
     let animateScroll = () => {
-        console.log(window.innerHeight);
         filterItem.forEach((items) => {
             let filterOffset = items.offsetTop;
             if (window.innerHeight < filterOffset) {

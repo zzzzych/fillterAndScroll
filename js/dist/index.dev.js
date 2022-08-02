@@ -10,14 +10,29 @@ window.addEventListener("DOMContentLoaded", function () {
   var popupImg = document.querySelector(".popup .content img");
   var btnPopupClose = document.querySelector(".popup .btn-close");
   var filter = document.querySelector(".wrap > .header .filter");
-  var filterLi = filter.children;
+  var filterLi = filter.children; //이미지 로딩 시 완료 되기 전 로딩 스피너
+
+  filterImg.forEach(function (images) {
+    if (images.complete == false && images.naturalHeight == 0) {
+      //이미지가 로딩 중일 때
+      images.style.opacity = 0;
+      images.parentElement.classList.add("loading-spinner");
+      window.addEventListener("load", function () {
+        // 이미지가 로딩이 완료 되었을 때
+        images.parentElement.classList.remove("loading-spinner");
+        images.style.opacity = 1;
+      });
+    } else if (images.complete == true && images.naturalHeight !== 0) {
+      return;
+    } else {
+      return;
+    }
+  });
   setLayout();
 
   var animateScroll = function animateScroll() {
-    console.log(window.innerHeight);
     filterItem.forEach(function (items) {
       var filterOffset = items.offsetTop;
-      console.log(filterOffset);
 
       if (window.innerHeight < filterOffset) {
         items.classList.add("hidden");
@@ -28,7 +43,6 @@ window.addEventListener("DOMContentLoaded", function () {
     window.addEventListener("scroll", function () {
       filterItem.forEach(function (items) {
         var filterOffset = items.offsetTop;
-        console.log(filterOffset);
 
         if (window.innerHeight + scrollY - 30 < filterOffset) {
           items.classList.add("hidden");
